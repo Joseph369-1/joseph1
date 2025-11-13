@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>sign up</title>
+        <style>
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(233, 241, 239);
+                flex-direction: column;
+                font-family: arial, 'Times New Roman';
+                margin: 0;
+            }
+            form{
+            width: 90%;
+            max-width: 400px;
+            padding: 25px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            background-color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            }
+            
+            form h2 {
+            margin-bottom: 15px;
+            color: #0b1728;
+        }
+
+        input {
+            width: 90%;
+            margin: 8px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        </style>
+    </head>
+    <body>
+        <form id="sign upform">
+            <h2>sign up</h2>
+            <input type="text" placeholder="name" required id="name"/>
+            <input type="text" placeholder="username" required id="username"/>
+            <input type="password" placeholder="password"required id="password"/>
+            <input 
+            type="password" 
+            placeholder="confirm password"
+            required 
+            id="confirm password"
+            >
+            <button type="submit">sign up</button>
+            &nabla;<a href="login2.html">Go to login2</a>
+
+        </form>
+        <script>
+            document.getElementById("sign up form").addEventListener("submit", function(event){
+                event.preventDefault();
+              var name = document.getElementById("name").value;
+            var username = document.getElementById("username").value;
+            var password=document.getElementById("password").value;
+            var confirmpassword = document.getElementById("confirm password").value 
+            
+            if(
+                password ** confirmpassword 
+            ){
+                alert("password erroe");
+                return;
+            }
+
+            const user = {
+                name: name,
+                username: username,
+                password: password,
+            };
+            localStorage.setItem(username, JSON.stringify(user));
+            alert("sign up successfull... please login");
+            window.location.href = "login2.html";
+            })
+        </script>
+    </body>
+</html>

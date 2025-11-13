@@ -1,0 +1,220 @@
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f5f7;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            width: 180px;
+            height: 180px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #323233;
+
+        }
+
+        .welcome-text {
+            color: #070707;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        form {
+            width: 90%;
+            max-width: 400px;
+            padding: 25px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            background-color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        form h2 {
+            margin-bottom: 15px;
+            color: #0b1728;
+        }
+
+        input {
+            width: 90%;
+            margin: 8px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .links {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            width: 90%;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            line-height: 0.1em;
+            margin: 20px 0;
+        }
+
+        .divider span {
+            background: #fff;
+            padding: 0 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 90%;
+        }
+
+        .google-btn, .linkedin-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .google-btn {
+            background-color: #4285F4;
+            color: white;
+        }
+
+        .linkedin-btn {
+            background-color: #0077B5;
+            color: white;
+        }
+
+        .google-btn:hover {
+            background-color: #357ae8;
+        }
+
+        .linkedin-btn:hover {
+            background-color: #005983;
+        }
+
+        .google-btn img, .linkedin-btn img {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.jpg.jpeg" alt="Tech Logo" />
+    </div>
+
+    <h3 class="welcome-text">Welcome back</h3>
+
+    <form id="loginform" action="login.php" method="post">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" required id="username" name="username"/>
+        <input type="password" placeholder="Password" required id="password" name="password"/>
+        <button type="submit">Login</button>
+
+        <div class="links">
+            <a href="register.html">Sign Up</a>
+            <a href="forgot-password.html">Forgot Password?</a>
+        </div>
+
+        <div class="divider"><span>OR</span></div>
+
+        <div class="social-login">
+            <button class="google-btn" type="button" onclick="signInWithGoogle()">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo">
+                Sign in with Google
+            </button>
+
+            <button class="linkedin-btn" type="button" onclick="signInWithLinkedIn()">
+                <img src="https://www.svgrepo.com/show/475661/linkedin-color.svg" alt="LinkedIn Logo">
+                Sign in with LinkedIn
+            </button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("loginform").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const user = localStorage.getItem(username);
+
+            if (user) {
+                const parsedUser = JSON.parse(user);
+                if (parsedUser.password === password) {
+                    localStorage.setItem("user", JSON.stringify(parsedUser));
+                    window.location.href = "index.html";
+                } else {
+                    alert("Incorrect password");
+                }
+            } else {
+                alert("User not found");
+            }
+        });
+
+        function signInWithGoogle() {
+            alert("Google sign-in will be implemented here.");
+        }
+
+        function signInWithLinkedIn() {
+            alert("LinkedIn sign-in will be implemented here.");
+        }
+    </script>
+</body>
+</html>
